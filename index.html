@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Corner Coffee — Trenton, GA · Coffee, Breakfast &amp; Lunch</title>
+<meta name="description" content="Corner Coffee is Trenton, Georgia's neighborhood café at 48 Court St — locally roasted espresso, hearty breakfasts, lunch and small-town warmth." />
+<link rel="icon" type="image/png" href="img/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@300..800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#F4EBDD;
+    --bg-2:#EDE0CC;
+    --paper:#FBF5EB;
+    --ink:#241711;
+    --ink-2:#4a3729;
+    --muted:#8a7666;
+    --accent:#C0762C;
+    --accent-2:#9C5A1E;
+    --gold:#DCA96B;
+    --line:rgba(36,23,17,.14);
+    --line-soft:rgba(36,23,17,.08);
+    --espresso:#1d120c;
+    --espresso-2:#241811;
+    --cream:#F6EEE1;
+    --serif:'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans:'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --rad:22px;
+    --shadow:0 30px 60px -30px rgba(29,18,12,.45);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:#fff}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+
+  .wrap{width:min(1180px,92vw);margin-inline:auto}
+
+  /* ---------- shared bits ---------- */
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:.7rem;
+    font-size:.72rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--accent);
+  }
+  .eyebrow::before{content:"";width:34px;height:1.5px;background:var(--accent)}
+  .eyebrow.center::after{content:"";width:34px;height:1.5px;background:var(--accent)}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.05;letter-spacing:-.01em}
+  .h2{font-size:clamp(2.1rem,4.6vw,3.4rem)}
+  .lead{color:var(--ink-2);font-size:1.05rem}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    padding:.95rem 1.7rem;border-radius:999px;
+    font-weight:700;font-size:.92rem;letter-spacing:.02em;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    cursor:pointer;border:none;
+  }
+  .btn-solid{background:var(--accent);color:#fff;box-shadow:0 14px 30px -14px rgba(192,118,44,.9)}
+  .btn-solid:hover{background:var(--accent-2);transform:translateY(-2px)}
+  .btn-ghost{color:var(--ink);border:1.5px solid var(--line);background:transparent}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .btn-light{background:#fff;color:var(--ink)}
+  .btn-light:hover{background:var(--gold);transform:translateY(-2px)}
+  .btn-outline-light{color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+  .btn-outline-light:hover{border-color:#fff;background:rgba(255,255,255,.08);transform:translateY(-2px)}
+
+  .section{padding:clamp(4rem,9vw,7.5rem) 0;position:relative}
+  .section-head{margin-bottom:clamp(2.2rem,5vw,3.6rem)}
+  .section-head .h2{margin-top:1rem}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed;inset:0 0 auto 0;z-index:60;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.1rem 4vw;
+    background:linear-gradient(180deg, rgba(24,14,8,.66), rgba(24,14,8,0));
+    transition:background .4s ease, padding .4s ease, box-shadow .4s ease;
+  }
+  nav.scrolled{
+    background:rgba(29,18,12,.86);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    padding:.7rem 4vw;
+    box-shadow:0 10px 40px -18px rgba(0,0,0,.7);
+  }
+  .brand{display:flex;align-items:center;gap:.65rem;z-index:2;flex-shrink:0}
+  .brand img{height:40px;width:auto}
+  .brand .name{font-family:var(--serif);font-weight:600;font-size:1.28rem;color:#fff;letter-spacing:.01em;white-space:nowrap}
+  .brand .name em{font-style:italic;color:var(--gold)}
+  .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;flex:1;justify-content:flex-end}
+  .nav-links a{
+    color:#f3e9da;font-size:.88rem;font-weight:600;letter-spacing:.04em;
+    position:relative;padding:.3rem 0;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;height:1.5px;width:0;background:var(--gold);
+    transition:width .3s ease;
+  }
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{margin-left:.4rem}
+  .burger{display:none;background:none;border:none;cursor:pointer;z-index:2;padding:.4rem}
+  .burger span{display:block;width:26px;height:2px;background:#fff;margin:6px 0;transition:.3s}
+  .burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;width:100%;aspect-ratio:16/9;max-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    overflow:hidden;color:#fff;isolation:isolate;
+  }
+  .hero-media{
+    position:absolute;inset:0;z-index:-2;
+    background:url('img/hero.jpg') center/cover no-repeat;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:
+      linear-gradient(180deg, rgba(18,11,7,.60) 0%, rgba(18,11,7,.30) 45%, rgba(18,11,7,.80) 100%),
+      linear-gradient(100deg, rgba(18,11,7,.55) 0%, rgba(18,11,7,.10) 60%);
+  }
+  .hero-content{max-width:780px;padding:8rem 0 3rem}
+  .hero .eyebrow{color:var(--gold)}
+  .hero .eyebrow::before{background:var(--gold)}
+  .hero h1{
+    font-size:clamp(2.9rem,8vw,5.8rem);
+    color:#fdf8ef;margin:1.3rem 0 .4rem;
+    text-shadow:0 4px 40px rgba(0,0,0,.35);
+  }
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--gold)}
+  .hero p.tag{
+    font-size:clamp(1.02rem,2vw,1.28rem);color:#f0e6d6;max-width:36ch;
+    margin:1.2rem 0 2.3rem;text-shadow:0 2px 16px rgba(0,0,0,.4);
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+  .hero-bar{
+    margin-top:clamp(2.6rem,6vh,4.5rem);
+    display:flex;gap:0;
+    border-top:1px solid rgba(255,255,255,.22);padding-top:1.4rem;
+    flex-wrap:wrap;row-gap:1rem;
+  }
+  .hero-bar .item{font-size:.74rem;letter-spacing:.09em;color:#e9ddc9;text-transform:uppercase;padding:0 clamp(1.2rem,3vw,2.2rem)}
+  .hero-bar .item:first-child{padding-left:0}
+  .hero-bar .item + .item{border-left:1px solid rgba(255,255,255,.18)}
+  .hero-bar .item b{display:block;font-family:var(--serif);font-weight:500;font-size:1.04rem;color:#fff;letter-spacing:.01em;margin-top:.25rem;text-transform:none}
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(2rem,6vw,5rem);align-items:center}
+  .about-copy h2{margin-top:1rem}
+  .about-copy .lead{margin:1.4rem 0 1.6rem;max-width:52ch}
+  .feat-list{list-style:none;display:grid;gap:.9rem;margin-top:1.8rem}
+  .feat-list li{display:flex;gap:.85rem;align-items:flex-start;font-size:.98rem}
+  .feat-list .ic{
+    flex:0 0 auto;width:30px;height:30px;border-radius:50%;
+    background:var(--bg-2);display:grid;place-items:center;margin-top:.1rem;
+  }
+  .feat-list svg{width:16px;height:16px;stroke:var(--accent)}
+  .about-media{position:relative;min-height:520px}
+  .ph{position:absolute;border-radius:var(--rad);overflow:hidden;box-shadow:var(--shadow)}
+  .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+  .ph:hover img{transform:scale(1.05)}
+  .ph-a{width:56%;height:76%;left:0;top:0}
+  .ph-b{width:52%;height:58%;right:0;bottom:0;border:6px solid var(--bg)}
+  .ph-c{width:42%;height:40%;right:6%;top:7%;border:6px solid var(--bg)}
+  .badge-card{
+    position:absolute;left:-6%;bottom:6%;z-index:3;
+    background:var(--paper);border-radius:16px;padding:1.1rem 1.4rem;
+    box-shadow:var(--shadow);display:flex;align-items:center;gap:.9rem;
+  }
+  .badge-card .num{font-family:var(--serif);font-size:2rem;font-weight:600;color:var(--accent);line-height:1}
+  .badge-card .txt{font-size:.78rem;letter-spacing:.05em;color:var(--ink-2);text-transform:uppercase;font-weight:700}
+  .badge-card .sub{display:block;font-weight:500;text-transform:none;letter-spacing:.02em;color:var(--muted);margin-top:.15rem}
+
+  /* ---------- menu ---------- */
+  .menu{background:var(--espresso);color:var(--cream);border-radius:clamp(20px,4vw,44px)}
+  .menu .eyebrow{color:var(--gold)}
+  .menu .eyebrow::before{background:var(--gold)}
+  .menu .h2{color:#fdf8ef}
+  .menu .lead{color:#cdbb9f}
+  .menu-head{text-align:center;padding-top:clamp(3.4rem,7vw,5.5rem);margin-bottom:2.2rem}
+  .tabs{display:flex;justify-content:center;gap:.55rem;flex-wrap:wrap;margin:0 auto 2.6rem;padding:0 1rem}
+  .tab{
+    background:rgba(255,255,255,.06);color:#dccdb6;border:1px solid rgba(255,255,255,.12);
+    padding:.6rem 1.25rem;border-radius:999px;font-size:.88rem;font-weight:700;cursor:pointer;
+    transition:.25s;letter-spacing:.02em;
+  }
+  .tab:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+  .tab.active{background:var(--gold);color:#241711;border-color:var(--gold)}
+  .menu-panel{display:none;grid-template-columns:repeat(2,1fr);gap:1rem 3rem;padding:0 clamp(1.2rem,4vw,4rem) clamp(3.4rem,6vw,5rem)}
+  .menu-panel.active{display:grid;animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .menu-sub{
+    grid-column:1/-1;display:flex;align-items:center;gap:1rem;
+    font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.35rem;color:var(--gold);
+    margin-top:1.2rem;margin-bottom:.2rem;
+  }
+  .menu-sub::after{content:"";flex:1;height:1px;background:linear-gradient(90deg, rgba(220,169,107,.5), transparent)}
+  .m-item{display:flex;align-items:baseline;gap:.8rem;padding:.7rem 0;border-bottom:1px dashed rgba(255,255,255,.14)}
+  .m-item .info{min-width:0}
+  .m-item .nm{display:block;font-family:var(--serif);font-size:1.22rem;font-weight:500;color:#f6eede;line-height:1.2}
+  .m-item .tagchip{
+    display:inline-block;font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    color:#241711;background:var(--gold);border-radius:999px;padding:.14rem .5rem;margin-left:.5rem;vertical-align:middle;
+  }
+  .m-item .tagchip.pop{background:#fff;color:#241711}
+  .m-item .ds{display:block;color:#b7a488;font-size:.85rem;margin-top:.3rem;line-height:1.5}
+  .m-item .dots{flex:1;border-bottom:1.5px dotted rgba(255,255,255,.25);transform:translateY(-4px)}
+  .m-item .price{font-family:var(--serif);font-size:1.2rem;color:var(--gold);white-space:nowrap}
+  .menu-note{text-align:center;color:#9d8a72;font-size:.82rem;padding-bottom:2.6rem;letter-spacing:.03em}
+  .menu-note b{color:var(--gold);font-weight:700}
+
+  /* ---------- gallery ---------- */
+  .gallery-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+  .gallery-head .h2{margin-top:1rem}
+  .g-note{color:var(--muted);font-size:.9rem;max-width:34ch}
+  .mosaic{
+    display:grid;grid-auto-flow:dense;
+    grid-template-columns:repeat(4,1fr);
+    grid-auto-rows:5px;gap:10px;margin-top:2.4rem;
+  }
+  .g-item{
+    grid-column-end:span 1;grid-row-end:span 26;
+    border-radius:12px;overflow:hidden;
+    position:relative;cursor:zoom-in;background:var(--bg-2);
+    transform:translateY(24px);opacity:0;transition:opacity .7s ease, transform .7s ease;
+  }
+  .g-item.in{transform:none;opacity:1}
+  .g-item img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .8s ease, filter .8s ease}
+  .g-item:not(.g-tile)::after{
+    content:"+";position:absolute;inset:0;display:grid;place-items:center;
+    color:#fff;font-size:2.4rem;font-weight:300;opacity:0;transition:.35s;
+    background:linear-gradient(180deg, rgba(29,18,12,.12), rgba(29,18,12,.55));
+  }
+  .g-item:not(.g-tile):hover img{transform:scale(1.045)}
+  .g-item:not(.g-tile):hover::after{opacity:1}
+  .g-tile{
+    grid-column-end:span 2;grid-row-end:span 18;cursor:default;
+    background:var(--espresso);color:var(--cream);border-radius:12px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:1.4rem 1rem;gap:.55rem;
+  }
+  .g-tile .t-eyebrow{font-size:.66rem;font-weight:800;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+  .g-tile .t-big{font-family:var(--serif);font-weight:500;font-size:clamp(1.2rem,2.6vw,1.85rem);line-height:1.2;color:#f6eede}
+  .g-tile .t-big em{font-style:italic;color:var(--gold)}
+
+  /* lightbox */
+  .lb{position:fixed;inset:0;z-index:100;background:rgba(15,9,6,.94);display:none;align-items:center;justify-content:center;flex-direction:column;padding:4vh 4vw}
+  .lb.open{display:flex}
+  .lb img{max-width:92vw;max-height:80vh;width:auto;height:auto;border-radius:10px;box-shadow:0 40px 90px -30px rgba(0,0,0,.9);animation:fade .3s ease}
+  .lb-cap{margin-top:1.1rem;color:#d8c7ab;font-family:var(--serif);font-style:italic;font-size:1.05rem}
+  .lb-btn{position:absolute;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:50%;width:52px;height:52px;font-size:1.3rem;cursor:pointer;display:grid;place-items:center;transition:.25s}
+  .lb-btn:hover{background:var(--accent);border-color:var(--accent)}
+  .lb-close{top:2.2rem;right:2.2rem}
+  .lb-prev{left:1.6rem;top:50%;transform:translateY(-50%)}
+  .lb-next{right:1.6rem;top:50%;transform:translateY(-50%)}
+  .lb-count{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);color:#b49e80;font-size:.8rem;letter-spacing:.2em}
+
+  /* ---------- reviews ---------- */
+  .reviews{background:var(--bg-2)}
+  .reviews-wrap{display:grid;grid-template-columns:320px 1fr;gap:clamp(1.6rem,4vw,3rem);align-items:start}
+  .rev-summary{
+    background:var(--espresso);color:var(--cream);border-radius:var(--rad);
+    padding:2.4rem 2.2rem;box-shadow:var(--shadow);position:sticky;top:120px;
+  }
+  .rev-summary .big{font-family:var(--serif);font-size:4.6rem;font-weight:600;line-height:1;color:#fdf8ef}
+  .rev-summary .stars{color:var(--gold);font-size:1.25rem;letter-spacing:.15em;margin:.7rem 0 .4rem}
+  .rev-summary p{color:#cdbb9f;font-size:.95rem}
+  .rev-summary .src{margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.14);font-size:.8rem;color:#9d8a72;letter-spacing:.05em}
+  .rev-summary .src b{color:var(--gold)}
+  .rev-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+  .rev-card{
+    background:var(--paper);border-radius:18px;padding:1.7rem 1.6rem;
+    box-shadow:0 18px 40px -28px rgba(29,18,12,.35);
+    display:flex;flex-direction:column;gap:.8rem;
+  }
+  .rev-card .stars{color:var(--accent);font-size:.95rem;letter-spacing:.12em}
+  .rev-card p{font-size:.98rem;color:var(--ink-2);font-family:var(--serif);font-weight:400;line-height:1.55}
+  .rev-card p::before{content:"“";color:var(--gold)}
+  .rev-card p::after{content:"”";color:var(--gold)}
+  .rev-card .src{font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:auto}
+  .reviews .starsline{display:inline-flex;align-items:center;gap:.6rem;margin-top:1rem}
+  .reviews .starsline .stars{color:var(--accent);letter-spacing:.12em}
+
+  /* ---------- visit ---------- */
+  .visit-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
+  .visit-card{background:var(--paper);border-radius:var(--rad);padding:clamp(1.8rem,4vw,2.8rem);box-shadow:var(--shadow)}
+  .hours{margin-top:1.6rem}
+  .hours .row{display:flex;justify-content:space-between;padding:.8rem 0;border-bottom:1px solid var(--line-soft);font-size:.98rem}
+  .hours .row span:last-child{font-weight:700;color:var(--ink)}
+  .hours .row.closed span:last-child{color:var(--muted)}
+  .hours .row.open span:last-child{color:var(--accent)}
+  .hours-note{margin-top:1rem;font-size:.82rem;color:var(--muted)}
+  .visit-meta{display:grid;gap:1.1rem;margin-top:1.8rem}
+  .visit-meta .v{display:flex;gap:.9rem;align-items:flex-start}
+  .visit-meta .ic{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--bg-2);display:grid;place-items:center}
+  .visit-meta svg{width:17px;height:17px;stroke:var(--accent)}
+  .visit-meta b{display:block;font-family:var(--serif);font-weight:600;font-size:1rem}
+  .visit-meta .small{color:var(--muted);font-size:.9rem}
+  .map-card{border-radius:var(--rad);overflow:hidden;box-shadow:var(--shadow);background:var(--espresso)}
+  .map-visual{
+    position:relative;height:400px;overflow:hidden;isolation:isolate;
+    background:linear-gradient(155deg,#2a1b12,#3a2817);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .map-visual::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background-image:
+      linear-gradient(rgba(220,169,107,.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(220,169,107,.10) 1px, transparent 1px),
+      linear-gradient(rgba(220,169,107,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(220,169,107,.05) 1px, transparent 1px);
+    background-size:130px 130px, 130px 130px, 26px 26px, 26px 26px;
+  }
+  .map-visual::after{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:
+      linear-gradient(26deg, transparent 45.5%, rgba(246,238,225,.16) 46.2%, rgba(246,238,225,.16) 47%, transparent 47.6%),
+      linear-gradient(120deg, transparent 33.5%, rgba(246,238,225,.10) 34.2%, rgba(246,238,225,.10) 35%, transparent 35.6%);
+  }
+  .map-pin{position:relative;z-index:2;text-align:center;padding:1.5rem}
+  .map-pin .cup{
+    width:76px;height:76px;margin:0 auto;border-radius:50%;
+    background:var(--accent);display:grid;place-items:center;
+    box-shadow:0 0 0 12px rgba(192,118,44,.22),0 0 0 26px rgba(192,118,44,.10);
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+  .map-pin .lbl{margin-top:1.25rem;font-family:var(--serif);font-weight:600;color:#f6eede;font-size:1.2rem}
+  .map-pin .sub{color:#cbb999;font-size:.86rem;margin-top:.2rem}
+  .map-card .bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.2rem 1.4rem;flex-wrap:wrap;background:var(--espresso)}
+  .map-card .bar .addr{color:var(--cream);font-family:var(--serif);font-size:1.05rem}
+  .map-card .bar .addr small{display:block;color:#b7a488;font-family:var(--sans);font-size:.82rem;margin-top:.1rem}
+  .map-actions{display:flex;gap:.6rem;flex-wrap:wrap}
+  .map-actions .btn{padding:.8rem 1.3rem;font-size:.85rem}
+  .pills{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.6rem}
+  .pill{
+    display:inline-flex;align-items:center;gap:.5rem;
+    padding:.62rem 1.15rem;border-radius:999px;
+    border:1.5px solid var(--line);background:var(--bg);
+    font-size:.85rem;font-weight:700;color:var(--ink);transition:.25s;
+  }
+  .pill:hover{background:var(--espresso);color:#fff;border-color:var(--espresso)}
+  .pill svg{width:15px;height:15px;stroke:currentColor}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--espresso);color:#cdbb9f;padding:clamp(3.4rem,7vw,5.5rem) 0 2rem;border-radius:clamp(20px,4vw,44px) clamp(20px,4vw,44px) 0 0}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.6rem}
+  footer .brand img{height:44px;width:auto}
+  footer .brand .name{color:#f6eede;font-size:1.35rem}
+  footer h5{font-family:var(--serif);font-weight:500;color:#f6eede;font-size:1.05rem;margin-bottom:1.1rem}
+  footer ul{list-style:none;display:grid;gap:.55rem;font-size:.93rem}
+  footer ul a:hover{color:var(--gold)}
+  .foot-tag{margin-top:1.1rem;color:#9d8a72;font-size:.9rem;max-width:30ch}
+  .socials{display:flex;gap:.7rem;margin-top:1.3rem}
+  .socials a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;transition:.25s}
+  .socials a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+  .socials svg{width:17px;height:17px;stroke:currentColor}
+  .foot-bottom{margin-top:3.4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:#8d7a66}
+  .foot-bottom span em{color:var(--gold);font-style:normal}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease, transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:1040px){
+    .nav-links{gap:1.25rem}
+    .nav-links a{font-size:.8rem}
+    .nav-cta .btn{padding:.7rem 1.15rem;font-size:.8rem}
+  }
+  @media (max-width:900px){
+    .hero{aspect-ratio:auto;height:min(92svh,155vw)}
+    .about-grid,.visit-grid,.reviews-wrap{grid-template-columns:1fr}
+    .about-media{min-height:430px;margin-bottom:2rem}
+    .badge-card{left:0}
+    .menu-panel{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .rev-summary{position:static}
+    .mosaic{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (max-width:860px){
+    .nav-links{
+      position:fixed;inset:0;background:rgba(29,18,12,.97);
+      flex-direction:column;justify-content:center;gap:2.2rem;
+      transform:translateX(100%);transition:transform .45s cubic-bezier(.2,.8,.2,1);
+    }
+    .nav-links.open{transform:none}
+    .nav-links a{font-size:1.5rem;font-family:var(--serif)}
+    .burger{display:block}
+    .nav-cta{margin-left:0}
+  }
+  @media (max-width:560px){
+    .foot-grid{grid-template-columns:1fr}
+    .rev-grid{grid-template-columns:1fr}
+    .hero-bar{display:none}
+    .hero-content{padding:6.5rem 0 2.5rem}
+    .mosaic{grid-template-columns:repeat(2,1fr);gap:8px}
+    .g-tile{grid-column-end:span 2}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal,.g-item{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#top" class="brand" aria-label="Corner Coffee home">
+    <img src="img/logo-light.png" alt="Corner Coffee logo" />
+    <span class="name">Corner <em>Coffee</em></span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#visit">Visit</a></li>
+    <li class="nav-cta"><a href="#visit" class="btn btn-light">Find Us</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-media" aria-hidden="true"></div>
+  <div class="wrap hero-content">
+    <span class="eyebrow">Trenton · Georgia</span>
+    <h1>Slow mornings,<br /><em>strong coffee.</em></h1>
+    <p class="tag">Trenton's neighborhood café on Court Street — locally roasted espresso, hearty breakfasts and small-town warmth in the heart of Dade County.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-solid">Explore the Menu</a>
+      <a href="#gallery" class="btn btn-outline-light">See Inside</a>
+    </div>
+    <div class="hero-bar">
+      <div class="item">Hours<b>Tue–Fri 7–2 · Sat 8–2</b></div>
+      <div class="item">Kitchen<b>Breakfast · Lunch</b></div>
+      <div class="item">Rating<b><span style="color:var(--gold)">★★★★★</span> 4.9 on Google</b></div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div class="about-media reveal">
+      <div class="ph ph-a"><img src="img/g35.jpg" alt="Barista crafting coffee" loading="lazy" /></div>
+      <div class="ph ph-b"><img src="img/about-couple.jpg" alt="A couple at Corner Coffee" loading="lazy" /></div>
+      <div class="ph ph-c"><img src="img/about-kid.jpg" alt="A little guest at Corner Coffee" loading="lazy" /></div>
+      <div class="badge-card">
+        <span class="num">☕</span>
+        <span class="txt">Brewed with care<span class="sub">from bean to cup, every time</span></span>
+      </div>
+    </div>
+    <div class="about-copy">
+      <span class="eyebrow">Our Story</span>
+      <h2 class="h2 reveal">A little corner where <em style="font-style:italic;color:var(--accent)">Trenton</em> slows down.</h2>
+      <p class="lead reveal">Corner Coffee is a small, family-run café on Court Street, just minutes from Cloudland Canyon. We pull every shot by hand, cook breakfast to order, and know our regulars by name — and their order before they say it.</p>
+      <ul class="feat-list">
+        <li class="reveal">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4Z"/><path d="M6 1v3M10 1v3M14 1v3"/></svg></span>
+          <span><b>Locally roasted</b><br />We proudly serve Goodman Coffee, roasted right down the road in Chattanooga, TN.</span>
+        </li>
+        <li class="reveal">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"/><path d="M18 2l4 4-10 10-4 1 1-4Z"/></svg></span>
+          <span><b>Made fresh, daily</b><br />Breakfast wraps, paninis, waffles and pastries prepared every morning.</span>
+        </li>
+        <li class="reveal">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg></span>
+          <span><b>A corner to linger</b><br />Cozy tables, free wi-fi, patio seating and a crowd that feels like family.</span>
+        </li>
+      </ul>
+      <a href="#menu" class="btn btn-solid reveal" style="margin-top:2rem">See What's Cooking</a>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="section" id="menu" style="padding-top:0">
+  <div class="wrap">
+    <div class="menu">
+      <div class="menu-head">
+        <span class="eyebrow center">The Menu</span>
+        <h2 class="h2" style="margin-top:1rem">Brewed &amp; <em style="font-style:italic;color:var(--gold)">cooked</em> to order.</h2>
+        <p class="lead" style="margin-top:.8rem">Breakfast, lunch and seriously good coffee — all under one roof.</p>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="breakfast">Breakfast</button>
+        <button class="tab" data-tab="lunch">Lunch</button>
+        <button class="tab" data-tab="coffee">Espresso &amp; Brew</button>
+        <button class="tab" data-tab="blended">Blended &amp; Smoothies</button>
+        <button class="tab" data-tab="extras">Tea &amp; Extras</button>
+      </div>
+
+      <!-- BREAKFAST -->
+      <div class="menu-panel active" id="breakfast">
+        <div class="menu-sub">The Morning Menu</div>
+        <div class="m-item"><span class="info"><span class="nm">The Morning Panini</span><span class="ds">Eggs, swiss &amp; mayo with your choice of bacon, ham or turkey sausage on grilled sourdough</span></span><span class="dots"></span><span class="price">$10.50</span></div>
+        <div class="m-item"><span class="info"><span class="nm">The Breakfast Wrap</span><span class="ds">Eggs, spinach, tomatoes &amp; house aioli in a grilled wrap — add bacon, ham or turkey sausage +$2</span></span><span class="dots"></span><span class="price">$8.75</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Breakfast Steak Wrap <span class="tagchip pop">Jon's Favorite</span></span><span class="ds">Fajita steak, eggs, red onion, tomatoes, jalapeños, cheese &amp; house aioli in a grilled wrap</span></span><span class="dots"></span><span class="price">$12</span></div>
+        <div class="m-item"><span class="info"><span class="nm">The Brittany</span><span class="ds">Toasted sourdough topped with house aioli, spinach, tomatoes, avocado &amp; omega seeds</span></span><span class="dots"></span><span class="price">$9.75</span></div>
+        <div class="m-item"><span class="info"><span class="nm">The Elvis</span><span class="ds">Peanut butter &amp; bananas drizzled with honey on a toasted plain bagel</span></span><span class="dots"></span><span class="price">$8.75</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Poached Egg Platter</span><span class="ds">Two poached eggs on a bed of spinach with tomato &amp; red onion, two slices of sourdough toast, butter &amp; jelly</span></span><span class="dots"></span><span class="price">$9</span></div>
+        <div class="m-item"><span class="info"><span class="nm">The Loaded Oatmeal</span><span class="ds">Whole oats topped with bananas, blueberries, strawberries, walnuts &amp; cinnamon, drizzled with agave</span></span><span class="dots"></span><span class="price">$8.50</span></div>
+        <div class="m-item"><span class="info"><span class="nm">The Corner Waffle <span class="tagchip">Unlimited Toppings</span></span><span class="ds">Belgian waffle with bananas, blueberries, strawberries, walnuts, whipped cream, chocolate chips, sprinkles &amp; more</span></span><span class="dots"></span><span class="price">$9.50</span></div>
+        <p class="menu-note" style="grid-column:1/-1;text-align:left;padding:1rem 0 0">All breakfast sandwiches &amp; wraps come with a hashbrown.</p>
+      </div>
+
+      <!-- LUNCH -->
+      <div class="menu-panel" id="lunch">
+        <div class="menu-sub">Sandwiches &amp; Wraps</div>
+        <div class="m-item"><span class="info"><span class="nm">The Corner Cheese</span><span class="ds">Melted cheddar on lightly buttered &amp; grilled sourdough</span></span><span class="dots"></span><span class="price">$8.75</span></div>
+        <div class="m-item"><span class="info"><span class="nm">The Chicken Pesto</span><span class="ds">Grilled chicken with swiss, tomato &amp; basil pesto on grilled sourdough</span></span><span class="dots"></span><span class="price">$11</span></div>
+        <div class="m-item"><span class="info"><span class="nm">The Grilled Chicken Wrap</span><span class="ds">Chicken, swiss, red onion, tomatoes, bacon &amp; ranch in a grilled wrap</span></span><span class="dots"></span><span class="price">$11.50</span></div>
+        <div class="m-item"><span class="info"><span class="nm">The Rachel</span><span class="ds">Turkey, melted swiss, sauerkraut &amp; thousand island on grilled sourdough</span></span><span class="dots"></span><span class="price">$10</span></div>
+        <div class="m-item"><span class="info"><span class="nm">The Turkey Bacon Wrap</span><span class="ds">Roasted turkey breast, bacon, swiss, spinach, tomato, red onion &amp; honey mustard in a grilled wrap</span></span><span class="dots"></span><span class="price">$11.50</span></div>
+        <div class="m-item"><span class="info"><span class="nm">The Southwest Steak Wrap <span class="tagchip pop">House Sauce</span></span><span class="ds">Fajita steak, red onion, tomatoes, jalapeños, swiss &amp; our housemade southwest sauce in a grilled wrap</span></span><span class="dots"></span><span class="price">$12.50</span></div>
+        <div class="m-item"><span class="info"><span class="nm">The Sal</span><span class="ds">Smoked salmon, cream cheese, spinach &amp; red onion on a toasted plain bagel</span></span><span class="dots"></span><span class="price">$10.50</span></div>
+        <div class="m-item"><span class="info"><span class="nm">The Veggie Avocado Wrap <span class="tagchip">Veg</span></span><span class="ds">Spinach, avocado, tomato, red onion &amp; hummus in a grilled wrap (or on sourdough)</span></span><span class="dots"></span><span class="price">$9.50</span></div>
+        <div class="menu-sub">Seasonal</div>
+        <div class="m-item"><span class="info"><span class="nm">Grilled Chicken Salad</span><span class="ds">Sliced grilled chicken, mixed berries, red onion, walnuts &amp; feta on spinach with raspberry walnut vinaigrette</span></span><span class="dots"></span><span class="price">$11</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Soup of the Day</span><span class="ds">Homemade soup served with crackers — bowl or cup. Add a grilled cheese +$5</span></span><span class="dots"></span><span class="price">$6 / $4</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Tuna or Chicken Salad Melt</span><span class="ds">House-made tuna or chicken salad with melted cheese on grilled sourdough</span></span><span class="dots"></span><span class="price">$10</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Quiche <span class="tagchip">Saturdays Only</span></span><span class="ds">Spinach &amp; Swiss or Ham &amp; Cheddar — served with hashbrown or sliced tomatoes</span></span><span class="dots"></span><span class="price">$9</span></div>
+        <div class="menu-sub">A La Carte</div>
+        <div class="m-item"><span class="info"><span class="nm">Fruit Cup</span><span class="ds">Seasonal fruit, fresh daily</span></span><span class="dots"></span><span class="price">$4</span></div>
+        <div class="m-item"><span class="info"><span class="nm">2 Pieces Sourdough or Bagel</span><span class="ds">Two pieces, toasted</span></span><span class="dots"></span><span class="price">$4</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Hashbrown</span><span class="ds">Golden &amp; crispy</span></span><span class="dots"></span><span class="price">$3</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Two Eggs</span><span class="ds">Scrambled or poached</span></span><span class="dots"></span><span class="price">$4</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Turkey Sausage or Bacon</span><span class="ds">Two pieces sausage or four pieces bacon</span></span><span class="dots"></span><span class="price">$4</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Avocado</span><span class="ds">Fresh sliced</span></span><span class="dots"></span><span class="price">$4</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Apple Slices &amp; Peanut Butter</span><span class="ds">The kid-approved classic</span></span><span class="dots"></span><span class="price">$4</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Carrots &amp; Hummus or Chips &amp; Pickle</span><span class="ds">Pick your side</span></span><span class="dots"></span><span class="price">$3</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Assorted Pastries</span><span class="ds">Fresh from the case</span></span><span class="dots"></span><span class="price">$3.75–$4.50</span></div>
+        <p class="menu-note" style="grid-column:1/-1;text-align:left;padding:1rem 0 0">Lunch comes with your choice of chips &amp; a pickle, or carrots &amp; hummus.</p>
+      </div>
+
+      <!-- COFFEE -->
+      <div class="menu-panel" id="coffee">
+        <div class="menu-sub">Hot · 12 oz / 16 oz pricing</div>
+        <div class="m-item"><span class="info"><span class="nm">Drip Coffee</span><span class="ds">Our house roast, always fresh</span></span><span class="dots"></span><span class="price">$3 / $3.50</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Latte</span><span class="ds">Silky steamed milk</span></span><span class="dots"></span><span class="price">$4.50 / $5</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Americano</span><span class="ds">Espresso lengthened with hot water</span></span><span class="dots"></span><span class="price">$3.50 / $4</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Cappuccino</span><span class="ds">Velvet micro-foam, dusted to order</span></span><span class="dots"></span><span class="price">$4.50 / $5</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Mocha</span><span class="ds">Espresso meets dark chocolate</span></span><span class="dots"></span><span class="price">$5 / $5.50</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Caramel Macchiato <span class="tagchip pop">Popular</span></span><span class="ds">House caramel, vanilla &amp; espresso</span></span><span class="dots"></span><span class="price">$5 / $5.50</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Café Au Lait</span><span class="ds">Brewed coffee &amp; steamed milk</span></span><span class="dots"></span><span class="price">$3.50 / $4</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Cortado</span><span class="ds">Espresso cut with warm milk</span></span><span class="dots"></span><span class="price">$4.50 / $5</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Chai</span><span class="ds">Spiced &amp; comforting</span></span><span class="dots"></span><span class="price">$4 / $4.50</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Matcha</span><span class="ds">Whisked to order</span></span><span class="dots"></span><span class="price">$4.50 / $5</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Hot Chocolate</span><span class="ds">Rich, creamy, no espresso required</span></span><span class="dots"></span><span class="price">$4.50 / $5</span></div>
+        <div class="menu-sub">Iced &amp; Cold</div>
+        <div class="m-item"><span class="info"><span class="nm">Iced Latte</span><span class="ds">12 oz · 2 shots / 16 oz · 4 shots</span></span><span class="dots"></span><span class="price">$4.50 / $5</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Iced Chai</span><span class="ds">Chilled &amp; spiced</span></span><span class="dots"></span><span class="price">$4 / $4.50</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Iced Matcha</span><span class="ds">Cool, green &amp; smooth</span></span><span class="dots"></span><span class="price">$4.50 / $5</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Cold Brew</span><span class="ds">Steeped slow, served cold</span></span><span class="dots"></span><span class="price">$4.50</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Creamy Cold Brew <span class="tagchip">House Favorite</span></span><span class="ds">Cold brew made silky &amp; sweet</span></span><span class="dots"></span><span class="price">$5</span></div>
+        <p class="menu-note" style="grid-column:1/-1;text-align:left;padding:1rem 0 0">We proudly serve <b>Goodman Coffee</b>, locally roasted in Chattanooga, TN.</p>
+      </div>
+
+      <!-- BLENDED & SMOOTHIES -->
+      <div class="menu-panel" id="blended">
+        <div class="menu-sub">Blended</div>
+        <div class="m-item"><span class="info"><span class="nm">Frozen Blender <span class="tagchip pop">Our Signature</span></span><span class="ds">All-natural ice cream &amp; 2 shots of espresso — plain or flavored (+50¢). Frappuccino vibes… but creamier!</span></span><span class="dots"></span><span class="price">$6</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Milkshakes</span><span class="ds">Vanilla, chocolate, strawberry, peach or banana — with whipped cream</span></span><span class="dots"></span><span class="price">$6.50</span></div>
+        <div class="menu-sub">Smoothies</div>
+        <div class="m-item"><span class="info"><span class="nm">Fruit Smoothies</span><span class="ds">Strawberry, banana, mango, peach, lemon, piña colada — or combine two</span></span><span class="dots"></span><span class="price">$6</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Protein Smoothies <span class="tagchip">Fuel</span></span><span class="ds">Choice of milk, banana, spinach, peanut butter powder &amp; vanilla protein powder · 305–415 cal · 17–24g protein</span></span><span class="dots"></span><span class="price">$8</span></div>
+        <div class="menu-sub">Refreshers</div>
+        <div class="m-item"><span class="info"><span class="nm">Lemonade</span><span class="ds">Plain or fruity — add lemon, peach, strawberry or mango +50¢</span></span><span class="dots"></span><span class="price">$4.50</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Cold Brew Yerba Mate <span class="tagchip">Seasonal</span></span><span class="ds">Bright, crisp &amp; naturally energizing</span></span><span class="dots"></span><span class="price">$4.50</span></div>
+      </div>
+
+      <!-- TEA & EXTRAS -->
+      <div class="menu-panel" id="extras">
+        <div class="menu-sub">Organic Teas</div>
+        <div class="m-item"><span class="info"><span class="nm">Organic Teas</span><span class="ds">Caffeinated — English Breakfast, Imperial Green, Earl Grey, Yerba Mate · Caffeine-free — Peppermint, Ginger Spice, Rooibos, Dandy Blend</span></span><span class="dots"></span><span class="price">$4.50</span></div>
+        <div class="menu-sub">Flavors &amp; Add-Ins</div>
+        <div class="m-item"><span class="info"><span class="nm">Flavors</span><span class="ds">Mocha, Vanilla, White Mocha, Amaretto, Hazelnut, Caramel, Pistachio, Irish Cream, Raspberry, Caramel Pecan · Sugar-free &amp; seasonal available</span></span><span class="dots"></span><span class="price">50¢</span></div>
+        <div class="m-item"><span class="info"><span class="nm">Premium Add-Ins</span><span class="ds">Protein powder $1 · Honey $1 · Almond butter $2 · Real maple syrup $1 · Super fuel powder $1 · Chia seeds $1 · Cacao powder $1 · Matcha $1</span></span><span class="dots"></span><span class="price"></span></div>
+        <div class="m-item"><span class="info"><span class="nm">Alternative Milks</span><span class="ds">Almond, oat or soy — available for an additional charge</span></span><span class="dots"></span><span class="price">+$1</span></div>
+      </div>
+
+      <p class="menu-note">Kitchen closes at <b>1:30 PM</b> · Prices subject to change</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section" id="gallery" style="padding-top:0">
+  <div class="wrap">
+    <div class="gallery-head reveal">
+      <div>
+        <span class="eyebrow">The Gallery</span>
+        <h2 class="h2">Moments from <em style="font-style:italic;color:var(--accent)">the corner.</em></h2>
+      </div>
+      <p class="g-note">A little collage of life at the corner — every photo keeps its original framing. Tap any to see it up close.</p>
+    </div>
+    <div class="mosaic" id="masonry">
+      <figure class="g-item" data-w="1200" data-h="1500"><img src="img/g01.jpg" alt="Corner Coffee — photo 1" loading="lazy" decoding="async" width="1200" height="1500" /></figure>
+      <figure class="g-item" data-w="940" data-h="788"><img src="img/g02.jpg" alt="Corner Coffee — photo 2" loading="lazy" decoding="async" width="940" height="788" /></figure>
+      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g03.jpg" alt="Corner Coffee — photo 3" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
+      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g04.jpg" alt="Corner Coffee — photo 4" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
+      <figure class="g-item" data-w="1200" data-h="900"><img src="img/g05.jpg" alt="Corner Coffee — photo 5" loading="lazy" decoding="async" width="1200" height="900" /></figure>
+      <div class="g-tile g-item" data-w="2" data-h="1"><span class="t-eyebrow">Corner Coffee · Trenton, GA</span><span class="t-big">Grab your coffee.<br/><em>Stay a while.</em></span></div>
+      <figure class="g-item" data-w="1200" data-h="900"><img src="img/g06.jpg" alt="Corner Coffee — photo 6" loading="lazy" decoding="async" width="1200" height="900" /></figure>
+      <figure class="g-item" data-w="1179" data-h="1569"><img src="img/g39.jpg" alt="Corner Coffee — photo 7" loading="lazy" decoding="async" width="1179" height="1569" /></figure>
+      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g40.jpg" alt="Corner Coffee — photo 8" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
+      <figure class="g-item" data-w="1200" data-h="900"><img src="img/g41.jpg" alt="Corner Coffee — photo 9" loading="lazy" decoding="async" width="1200" height="900" /></figure>
+      <figure class="g-item" data-w="720" data-h="1280"><img src="img/g42.jpg" alt="Corner Coffee — photo 10" loading="lazy" decoding="async" width="720" height="1280" /></figure>
+      <figure class="g-item" data-w="720" data-h="967"><img src="img/g07.jpg" alt="Corner Coffee — photo 11" loading="lazy" decoding="async" width="720" height="967" /></figure>
+      <figure class="g-item" data-w="720" data-h="529"><img src="img/g08.jpg" alt="Corner Coffee — photo 12" loading="lazy" decoding="async" width="720" height="529" /></figure>
+      <figure class="g-item" data-w="720" data-h="960"><img src="img/g09.jpg" alt="Corner Coffee — photo 13" loading="lazy" decoding="async" width="720" height="960" /></figure>
+      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g10.jpg" alt="Corner Coffee — photo 14" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
+      <figure class="g-item" data-w="720" data-h="967"><img src="img/g11.jpg" alt="Corner Coffee — photo 15" loading="lazy" decoding="async" width="720" height="967" /></figure>
+      <figure class="g-item" data-w="720" data-h="960"><img src="img/g12.jpg" alt="Corner Coffee — photo 16" loading="lazy" decoding="async" width="720" height="960" /></figure>
+      <figure class="g-item" data-w="1200" data-h="900"><img src="img/g13.jpg" alt="Corner Coffee — photo 17" loading="lazy" decoding="async" width="1200" height="900" /></figure>
+      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g14.jpg" alt="Corner Coffee — photo 18" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
+      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g15.jpg" alt="Corner Coffee — photo 19" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
+      <figure class="g-item" data-w="1179" data-h="1537"><img src="img/g16.jpg" alt="Corner Coffee — photo 20" loading="lazy" decoding="async" width="1179" height="1537" /></figure>
+      <figure class="g-item" data-w="1038" data-h="1041"><img src="img/g17.jpg" alt="Corner Coffee — photo 21" loading="lazy" decoding="async" width="1038" height="1041" /></figure>
+      <figure class="g-item" data-w="720" data-h="960"><img src="img/g18.jpg" alt="Corner Coffee — photo 22" loading="lazy" decoding="async" width="720" height="960" /></figure>
+      <figure class="g-item" data-w="1200" data-h="900"><img src="img/g19.jpg" alt="Corner Coffee — photo 23" loading="lazy" decoding="async" width="1200" height="900" /></figure>
+      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g20.jpg" alt="Corner Coffee — photo 24" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
+      <figure class="g-item" data-w="1179" data-h="878"><img src="img/g21.jpg" alt="Corner Coffee — photo 25" loading="lazy" decoding="async" width="1179" height="878" /></figure>
+      <figure class="g-item" data-w="1179" data-h="868"><img src="img/g22.jpg" alt="Corner Coffee — photo 26" loading="lazy" decoding="async" width="1179" height="868" /></figure>
+      <figure class="g-item" data-w="1179" data-h="871"><img src="img/g23.jpg" alt="Corner Coffee — photo 27" loading="lazy" decoding="async" width="1179" height="871" /></figure>
+      <figure class="g-item" data-w="1179" data-h="1566"><img src="img/g24.jpg" alt="Corner Coffee — photo 28" loading="lazy" decoding="async" width="1179" height="1566" /></figure>
+      <figure class="g-item" data-w="1179" data-h="664"><img src="img/g25.jpg" alt="Corner Coffee — photo 29" loading="lazy" decoding="async" width="1179" height="664" /></figure>
+      <figure class="g-item" data-w="1179" data-h="1565"><img src="img/g26.jpg" alt="Corner Coffee — photo 30" loading="lazy" decoding="async" width="1179" height="1565" /></figure>
+      <figure class="g-item" data-w="1179" data-h="878"><img src="img/g27.jpg" alt="Corner Coffee — photo 31" loading="lazy" decoding="async" width="1179" height="878" /></figure>
+      <figure class="g-item" data-w="1179" data-h="874"><img src="img/g28.jpg" alt="Corner Coffee — photo 32" loading="lazy" decoding="async" width="1179" height="874" /></figure>
+      <figure class="g-item" data-w="1179" data-h="1548"><img src="img/g29.jpg" alt="Corner Coffee — photo 33" loading="lazy" decoding="async" width="1179" height="1548" /></figure>
+      <figure class="g-item" data-w="1200" data-h="1025"><img src="img/g30.jpg" alt="Corner Coffee — photo 34" loading="lazy" decoding="async" width="1200" height="1025" /></figure>
+      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g31.jpg" alt="Corner Coffee — photo 35" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
+      <figure class="g-item" data-w="1179" data-h="878"><img src="img/g32.jpg" alt="Corner Coffee — photo 36" loading="lazy" decoding="async" width="1179" height="878" /></figure>
+      <figure class="g-item" data-w="720" data-h="521"><img src="img/g33.jpg" alt="Corner Coffee — photo 37" loading="lazy" decoding="async" width="720" height="521" /></figure>
+      <figure class="g-item" data-w="1200" data-h="900"><img src="img/g34.jpg" alt="Corner Coffee — photo 38" loading="lazy" decoding="async" width="1200" height="900" /></figure>
+      <figure class="g-item" data-w="1200" data-h="1200"><img src="img/g35.jpg" alt="Corner Coffee — photo 39" loading="lazy" decoding="async" width="1200" height="1200" /></figure>
+      <figure class="g-item" data-w="1200" data-h="723"><img src="img/g36.jpg" alt="Corner Coffee — photo 40" loading="lazy" decoding="async" width="1200" height="723" /></figure>
+      <figure class="g-item" data-w="1200" data-h="1110"><img src="img/g37.jpg" alt="Corner Coffee — photo 41" loading="lazy" decoding="async" width="1200" height="1110" /></figure>
+      <figure class="g-item" data-w="1179" data-h="884"><img src="img/g38.jpg" alt="Corner Coffee — photo 42" loading="lazy" decoding="async" width="1179" height="884" /></figure>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Google Reviews</span>
+      <h2 class="h2">Loved by the <em style="font-style:italic;color:var(--accent)">neighborhood.</em></h2>
+      <div class="starsline"><span class="stars">★★★★★</span><span class="lead" style="font-size:.95rem">Real words from real guests</span></div>
+    </div>
+    <div class="reviews-wrap">
+      <div class="rev-summary reveal">
+        <div class="big">4.9</div>
+        <div class="stars">★★★★★</div>
+        <p>Rated by locals &amp; road-trippers on Google</p>
+        <div class="src">#1 rated coffee shop in <b>Trenton, Georgia</b></div>
+      </div>
+      <div class="rev-grid">
+        <div class="rev-card reveal"><div class="stars">★★★★★</div><p>The coffee was absolutely excellent — rich, smooth, and perfectly balanced. The food was just as impressive: fresh, flavorful, and beautifully prepared.</p><span class="src">Google review</span></div>
+        <div class="rev-card reveal"><div class="stars">★★★★★</div><p>The owners were so sweet and welcoming. The atmosphere was right up my alley — cozy, relaxed, and friendly. The Morning Panini with ham was delicious!</p><span class="src">Google review</span></div>
+        <div class="rev-card reveal"><div class="stars">★★★★★</div><p>Great place for coffee and breakfast. Owners are nice and friendly — after two visits they remembered my name.</p><span class="src">Google review</span></div>
+        <div class="rev-card reveal"><div class="stars">★★★★★</div><p>Stopped in at random and it's such a cute coffee shop — obviously a place that locals love. The coffees were delicious.</p><span class="src">Google review</span></div>
+        <div class="rev-card reveal"><div class="stars">★★★★★</div><p>We were in the area for the weekend and this was our go-to every day. They treated us like family — they even drew a cat on my daughter's matcha!</p><span class="src">Google review</span></div>
+        <div class="rev-card reveal"><div class="stars">★★★★★</div><p>We had the ham and steak wraps — DELICIOUS! And the coffee was on point. John and his staff are very kind and gracious.</p><span class="src">Google review</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="section" id="visit" style="padding-top:0">
+  <div class="wrap visit-grid">
+    <div>
+      <span class="eyebrow">Visit Us</span>
+      <h2 class="h2 reveal" style="margin-top:1rem">Find your seat at the corner.</h2>
+      <div class="visit-card reveal" style="margin-top:2rem">
+        <h3 style="font-size:1.4rem">Hours &amp; Location</h3>
+        <div class="hours">
+          <div class="row closed"><span>Sunday</span><span>Closed</span></div>
+          <div class="row closed"><span>Monday</span><span>Closed</span></div>
+          <div class="row open"><span>Tuesday – Friday</span><span>7:00 AM – 2:00 PM</span></div>
+          <div class="row open"><span>Saturday</span><span>8:00 AM – 2:00 PM</span></div>
+        </div>
+        <p class="hours-note">Kitchen closes at 1:30 PM · Walk-ins welcome</p>
+        <div class="visit-meta">
+          <div class="v">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span><b>48 Court Street</b><span class="small">Trenton, GA 30752</span></span>
+          </div>
+          <div class="v">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span>
+            <span><b><a href="tel:+17065001133" style="color:inherit">(706) 500-1133</a></b><span class="small">Give us a ring or just drop by</span></span>
+          </div>
+          <div class="v">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+            <span><b><a href="mailto:Cornercoffeetrenton@gmail.com" style="color:inherit">Cornercoffeetrenton@gmail.com</a></b><span class="small">For events, orders &amp; collaborations</span></span>
+          </div>
+        </div>
+        <div class="pills">
+          <a class="pill" href="https://www.facebook.com/48courtstreet" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/></svg>Facebook</a>
+          <a class="pill" href="https://www.instagram.com/cornercoffeetrenton" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>Instagram</a>
+          <a class="pill" href="mailto:Cornercoffeetrenton@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>Email</a>
+        </div>
+      </div>
+    </div>
+    <div class="map-card reveal">
+      <div class="map-visual" aria-label="Corner Coffee location — 48 Court St, Trenton, GA">
+        <div class="map-pin">
+          <div class="cup">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4Z"/><path d="M6 1v3M10 1v3M14 1v3"/></svg>
+          </div>
+          <div class="lbl">48 Court St, Trenton, GA 30752</div>
+          <div class="sub">Right on the corner of the town square — you can't miss us</div>
+        </div>
+      </div>
+      <div class="bar">
+        <span class="addr">Corner Coffee<small>48 Court St, Trenton, GA 30752</small></span>
+        <div class="map-actions">
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Corner+Coffee,+48+Court+St,+Trenton,+GA+30752" target="_blank" rel="noopener noreferrer" class="btn btn-solid">Get Directions</a>
+          <a href="https://maps.app.goo.gl/zjhfcNF3UwDH5YDm9" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">Open in Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="brand">
+          <img src="img/logo-light.png" alt="Corner Coffee logo" />
+          <span class="name">Corner <em style="color:var(--gold)">Coffee</em></span>
+        </a>
+        <p class="foot-tag">A family-run café in Trenton, Georgia serving locally roasted espresso, hearty breakfasts and small-town warmth.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/48courtstreet" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/></svg></a>
+          <a href="https://www.instagram.com/cornercoffeetrenton" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+          <a href="mailto:Cornercoffeetrenton@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#menu">The Menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#visit">Visit Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Hours</h5>
+        <ul>
+          <li>Tue – Fri · 7 AM – 2 PM</li>
+          <li>Sat · 8 AM – 2 PM</li>
+          <li>Sun &amp; Mon · Closed</li>
+          <li>Kitchen closes 1:30 PM</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Find Us</h5>
+        <ul>
+          <li>48 Court St, Trenton, GA 30752</li>
+          <li><a href="tel:+17065001133">(706) 500-1133</a></li>
+          <li><a href="mailto:Cornercoffeetrenton@gmail.com">Cornercoffeetrenton@gmail.com</a></li>
+          <li>ourcornercoffee.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> Corner Coffee · All rights reserved</span>
+      <span>Crafted with <em>☕</em> in Trenton, Georgia</span>
+    </div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Corner Coffee photo" />
+  <div class="lb-cap" id="lbCap">Corner Coffee</div>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Next">›</button>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
+<script>
+(function(){
+  const nav = document.getElementById('nav');
+  const burger = document.getElementById('burger');
+  const links = document.getElementById('navLinks');
+
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    links.classList.toggle('open');
+    document.body.style.overflow = links.classList.contains('open') ? 'hidden' : '';
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open'); links.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  const gio = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); gio.unobserve(e.target); } });
+  }, {threshold:.05});
+  document.querySelectorAll('.g-item').forEach(el => gio.observe(el));
+
+  // mosaic collage — size each tile to its photo's true aspect ratio (no visible cropping)
+  const mosaic = document.getElementById('masonry');
+  function buildMosaic(){
+    const ROW = 5, GAP = 10;
+    const vw = mosaic.clientWidth;
+    if(!vw) return;
+    const cols = vw > 1080 ? 4 : vw > 620 ? 3 : 2;
+    mosaic.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
+    mosaic.style.gridAutoRows = ROW + 'px';
+    mosaic.style.gap = GAP + 'px';
+    const colW = (vw - GAP * (cols - 1)) / cols;
+    mosaic.querySelectorAll('.g-item:not(.g-tile)').forEach(function(it, i){
+      const w = parseInt(it.dataset.w, 10), h = parseInt(it.dataset.h, 10);
+      if(!w || !h) return;
+      const ar = w / h;
+      let span = 1;
+      if(cols === 4 && (ar > 1.5 || (ar > 1.12 && i % 3 === 1))) span = 2;
+      if(cols === 3 && ar > 1.45) span = 2;
+      const widthPx = colW * span + GAP * (span - 1);
+      const rows = Math.max(6, Math.round((widthPx * (h / w) + GAP) / (ROW + GAP)));
+      it.style.gridColumnEnd = 'span ' + span;
+      it.style.gridRowEnd = 'span ' + rows;
+    });
+  }
+  let mosaicTimer;
+  function scheduleMosaic(){ clearTimeout(mosaicTimer); mosaicTimer = setTimeout(buildMosaic, 120); }
+  window.addEventListener('resize', scheduleMosaic);
+  if(document.readyState === 'complete'){ buildMosaic(); } else { window.addEventListener('load', buildMosaic); setTimeout(buildMosaic, 400); }
+
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.menu-panel');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.tab).classList.add('active');
+  }));
+
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lbImg');
+  const lbCap = document.getElementById('lbCap');
+  const lbCount = document.getElementById('lbCount');
+  const imgs = Array.from(document.querySelectorAll('.g-item img'));
+  let idx = 0;
+  function show(i){
+    idx = (i + imgs.length) % imgs.length;
+    const s = imgs[idx];
+    lbImg.src = s.src;
+    lbImg.alt = s.alt;
+    lbCount.textContent = (idx + 1) + ' / ' + imgs.length;
+    lbCap.textContent = 'Corner Coffee — Trenton, GA';
+  }
+  imgs.forEach((img, i) => img.closest('.g-item').addEventListener('click', () => {
+    show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden';
+  }));
+  function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+  document.getElementById('lbClose').addEventListener('click', close);
+  document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); show(idx - 1); });
+  document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); show(idx + 1); });
+  lb.addEventListener('click', e => { if(e.target === lb) close(); });
+  document.addEventListener('keydown', e => {
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape') close();
+    if(e.key === 'ArrowLeft') show(idx - 1);
+    if(e.key === 'ArrowRight') show(idx + 1);
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
