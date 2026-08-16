@@ -1,253 +1,253 @@
 {
  "gallery": [
   {
-   "file": "g01.jpg",
+   "file": "g01.webp",
    "src": "FB_IMG_1786810867086.jpg",
-   "w": 1200,
-   "h": 1500
+   "w": 1000,
+   "h": 1250
   },
   {
-   "file": "g02.jpg",
+   "file": "g02.webp",
    "src": "FB_IMG_1786810987335.jpg",
    "w": 940,
    "h": 788
   },
   {
-   "file": "g03.jpg",
+   "file": "g03.webp",
    "src": "FB_IMG_1786811082925.jpg",
-   "w": 1200,
-   "h": 1600
+   "w": 1000,
+   "h": 1333
   },
   {
-   "file": "g04.jpg",
+   "file": "g04.webp",
    "src": "FB_IMG_1786811108368.jpg",
-   "w": 1200,
-   "h": 1600
+   "w": 1000,
+   "h": 1333
   },
   {
-   "file": "g05.jpg",
+   "file": "g05.webp",
    "src": "FB_IMG_1786811130522.jpg",
-   "w": 1200,
-   "h": 900
+   "w": 1000,
+   "h": 750
   },
   {
-   "file": "g06.jpg",
+   "file": "g06.webp",
    "src": "FB_IMG_1786811181486.jpg",
-   "w": 1200,
-   "h": 900
+   "w": 1000,
+   "h": 750
   },
   {
-   "file": "g07.jpg",
+   "file": "g07.webp",
    "src": "FB_IMG_1786811193913.jpg",
    "w": 720,
    "h": 967
   },
   {
-   "file": "g08.jpg",
+   "file": "g08.webp",
    "src": "FB_IMG_1786811196474.jpg",
    "w": 720,
    "h": 529
   },
   {
-   "file": "g09.jpg",
+   "file": "g09.webp",
    "src": "FB_IMG_1786811201225.jpg",
    "w": 720,
    "h": 960
   },
   {
-   "file": "g10.jpg",
+   "file": "g10.webp",
    "src": "FB_IMG_1786811205773.jpg",
-   "w": 1200,
-   "h": 1600
+   "w": 1000,
+   "h": 1333
   },
   {
-   "file": "g11.jpg",
+   "file": "g11.webp",
    "src": "FB_IMG_1786811208632.jpg",
    "w": 720,
    "h": 967
   },
   {
-   "file": "g12.jpg",
+   "file": "g12.webp",
    "src": "FB_IMG_1786811221283.jpg",
    "w": 720,
    "h": 960
   },
   {
-   "file": "g13.jpg",
+   "file": "g13.webp",
    "src": "IMG-20260815-WA0010.jpg",
-   "w": 1200,
-   "h": 900
+   "w": 1000,
+   "h": 750
   },
   {
-   "file": "g14.jpg",
+   "file": "g14.webp",
    "src": "IMG-20260815-WA0011.jpg",
-   "w": 1200,
-   "h": 1600
+   "w": 1000,
+   "h": 1333
   },
   {
-   "file": "g15.jpg",
+   "file": "g15.webp",
    "src": "IMG-20260815-WA0012.jpg",
-   "w": 1200,
-   "h": 1600
+   "w": 1000,
+   "h": 1333
   },
   {
-   "file": "g16.jpg",
+   "file": "g16.webp",
    "src": "IMG-20260815-WA0013.jpg",
-   "w": 1179,
-   "h": 1537
+   "w": 1000,
+   "h": 1304
   },
   {
-   "file": "g17.jpg",
+   "file": "g17.webp",
    "src": "IMG-20260815-WA0014.jpg",
-   "w": 1038,
-   "h": 1041
+   "w": 1000,
+   "h": 1003
   },
   {
-   "file": "g18.jpg",
+   "file": "g18.webp",
    "src": "IMG-20260815-WA0015.jpg",
    "w": 720,
    "h": 960
   },
   {
-   "file": "g19.jpg",
+   "file": "g19.webp",
    "src": "IMG-20260815-WA0016.jpg",
-   "w": 1200,
-   "h": 900
+   "w": 1000,
+   "h": 750
   },
   {
-   "file": "g20.jpg",
+   "file": "g20.webp",
    "src": "IMG-20260815-WA0017.jpg",
-   "w": 1200,
-   "h": 1600
+   "w": 1000,
+   "h": 1333
   },
   {
-   "file": "g21.jpg",
+   "file": "g21.webp",
    "src": "IMG-20260815-WA0018.jpg",
-   "w": 1179,
-   "h": 878
+   "w": 1000,
+   "h": 745
   },
   {
-   "file": "g22.jpg",
+   "file": "g22.webp",
    "src": "IMG-20260815-WA0020.jpg",
-   "w": 1179,
-   "h": 868
+   "w": 1000,
+   "h": 736
   },
   {
-   "file": "g23.jpg",
+   "file": "g23.webp",
    "src": "IMG-20260815-WA0021.jpg",
-   "w": 1179,
-   "h": 871
+   "w": 1000,
+   "h": 739
   },
   {
-   "file": "g24.jpg",
+   "file": "g24.webp",
    "src": "IMG-20260815-WA0022.jpg",
-   "w": 1179,
-   "h": 1566
+   "w": 1000,
+   "h": 1328
   },
   {
-   "file": "g25.jpg",
+   "file": "g25.webp",
    "src": "IMG-20260815-WA0023.jpg",
-   "w": 1179,
-   "h": 664
+   "w": 1000,
+   "h": 563
   },
   {
-   "file": "g26.jpg",
+   "file": "g26.webp",
    "src": "IMG-20260815-WA0024.jpg",
-   "w": 1179,
-   "h": 1565
+   "w": 1000,
+   "h": 1327
   },
   {
-   "file": "g27.jpg",
+   "file": "g27.webp",
    "src": "IMG-20260815-WA0025.jpg",
-   "w": 1179,
-   "h": 878
+   "w": 1000,
+   "h": 745
   },
   {
-   "file": "g28.jpg",
+   "file": "g28.webp",
    "src": "IMG-20260815-WA0026.jpg",
-   "w": 1179,
-   "h": 874
+   "w": 1000,
+   "h": 741
   },
   {
-   "file": "g29.jpg",
+   "file": "g29.webp",
    "src": "IMG-20260815-WA0027.jpg",
-   "w": 1179,
-   "h": 1548
+   "w": 1000,
+   "h": 1313
   },
   {
-   "file": "g30.jpg",
+   "file": "g30.webp",
    "src": "IMG-20260815-WA0028.jpg",
-   "w": 1200,
-   "h": 1025
+   "w": 1000,
+   "h": 854
   },
   {
-   "file": "g31.jpg",
+   "file": "g31.webp",
    "src": "IMG-20260815-WA0029.jpg",
-   "w": 1200,
-   "h": 1600
+   "w": 1000,
+   "h": 1333
   },
   {
-   "file": "g32.jpg",
+   "file": "g32.webp",
    "src": "IMG-20260815-WA0030.jpg",
-   "w": 1179,
-   "h": 878
+   "w": 1000,
+   "h": 745
   },
   {
-   "file": "g33.jpg",
+   "file": "g33.webp",
    "src": "IMG-20260815-WA0031.jpg",
    "w": 720,
    "h": 521
   },
   {
-   "file": "g34.jpg",
+   "file": "g34.webp",
    "src": "IMG-20260815-WA0032.jpg",
-   "w": 1200,
-   "h": 900
+   "w": 1000,
+   "h": 750
   },
   {
-   "file": "g35.jpg",
+   "file": "g35.webp",
    "src": "IMG-20260815-WA0033.jpg",
-   "w": 1200,
-   "h": 1200
+   "w": 1000,
+   "h": 1000
   },
   {
-   "file": "g36.jpg",
+   "file": "g36.webp",
    "src": "IMG-20260815-WA0034.jpg",
-   "w": 1200,
-   "h": 723
+   "w": 1000,
+   "h": 602
   },
   {
-   "file": "g37.jpg",
+   "file": "g37.webp",
    "src": "IMG-20260815-WA0035.jpg",
-   "w": 1200,
-   "h": 1110
+   "w": 1000,
+   "h": 925
   },
   {
-   "file": "g38.jpg",
+   "file": "g38.webp",
    "src": "IMG-20260815-WA0036.jpg",
-   "w": 1179,
-   "h": 884
+   "w": 1000,
+   "h": 750
   },
   {
-   "file": "g39.jpg",
+   "file": "g39.webp",
    "src": "IMG-20260815-WA0037.jpg",
-   "w": 1179,
-   "h": 1569
+   "w": 1000,
+   "h": 1331
   },
   {
-   "file": "g40.jpg",
+   "file": "g40.webp",
    "src": "IMG-20260815-WA0038.jpg",
-   "w": 1200,
-   "h": 1600
+   "w": 1000,
+   "h": 1333
   },
   {
-   "file": "g41.jpg",
+   "file": "g41.webp",
    "src": "IMG-20260815-WA0039.jpg",
-   "w": 1200,
-   "h": 900
+   "w": 1000,
+   "h": 750
   },
   {
-   "file": "g42.jpg",
+   "file": "g42.webp",
    "src": "IMG-20260815-WA0040.jpg",
    "w": 720,
    "h": 1280

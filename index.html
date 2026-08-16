@@ -8,6 +8,7 @@
 <link rel="icon" type="image/png" href="img/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="image" href="img/hero.webp" fetchpriority="high" />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@300..800&display=swap" rel="stylesheet" />
 <style>
   :root{
@@ -123,7 +124,7 @@
   }
   .hero-media{
     position:absolute;inset:0;z-index:-2;
-    background:url('img/hero.jpg') center/cover no-repeat;
+    background:url('img/hero.webp') center/cover no-repeat;
   }
   .hero::before{
     content:"";position:absolute;inset:0;z-index:-1;
@@ -308,36 +309,7 @@
   .visit-meta b{display:block;font-family:var(--serif);font-weight:600;font-size:1rem}
   .visit-meta .small{color:var(--muted);font-size:.9rem}
   .map-card{border-radius:var(--rad);overflow:hidden;box-shadow:var(--shadow);background:var(--espresso)}
-  .map-visual{
-    position:relative;height:400px;overflow:hidden;isolation:isolate;
-    background:linear-gradient(155deg,#2a1b12,#3a2817);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .map-visual::before{
-    content:"";position:absolute;inset:0;z-index:0;
-    background-image:
-      linear-gradient(rgba(220,169,107,.10) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(220,169,107,.10) 1px, transparent 1px),
-      linear-gradient(rgba(220,169,107,.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(220,169,107,.05) 1px, transparent 1px);
-    background-size:130px 130px, 130px 130px, 26px 26px, 26px 26px;
-  }
-  .map-visual::after{
-    content:"";position:absolute;inset:0;z-index:0;
-    background:
-      linear-gradient(26deg, transparent 45.5%, rgba(246,238,225,.16) 46.2%, rgba(246,238,225,.16) 47%, transparent 47.6%),
-      linear-gradient(120deg, transparent 33.5%, rgba(246,238,225,.10) 34.2%, rgba(246,238,225,.10) 35%, transparent 35.6%);
-  }
-  .map-pin{position:relative;z-index:2;text-align:center;padding:1.5rem}
-  .map-pin .cup{
-    width:76px;height:76px;margin:0 auto;border-radius:50%;
-    background:var(--accent);display:grid;place-items:center;
-    box-shadow:0 0 0 12px rgba(192,118,44,.22),0 0 0 26px rgba(192,118,44,.10);
-    animation:pulse 2.6s ease-in-out infinite;
-  }
-  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-  .map-pin .lbl{margin-top:1.25rem;font-family:var(--serif);font-weight:600;color:#f6eede;font-size:1.2rem}
-  .map-pin .sub{color:#cbb999;font-size:.86rem;margin-top:.2rem}
+  .map-card iframe{display:block;width:100%;height:430px;border:0;filter:saturate(.92) contrast(1.02)}
   .map-card .bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.2rem 1.4rem;flex-wrap:wrap;background:var(--espresso)}
   .map-card .bar .addr{color:var(--cream);font-family:var(--serif);font-size:1.05rem}
   .map-card .bar .addr small{display:block;color:#b7a488;font-family:var(--sans);font-size:.82rem;margin-top:.1rem}
@@ -456,9 +428,9 @@
 <section class="section" id="about">
   <div class="wrap about-grid">
     <div class="about-media reveal">
-      <div class="ph ph-a"><img src="img/g35.jpg" alt="Barista crafting coffee" loading="lazy" /></div>
-      <div class="ph ph-b"><img src="img/about-couple.jpg" alt="A couple at Corner Coffee" loading="lazy" /></div>
-      <div class="ph ph-c"><img src="img/about-kid.jpg" alt="A little guest at Corner Coffee" loading="lazy" /></div>
+      <div class="ph ph-a"><img src="img/g35.webp" alt="Barista crafting coffee" loading="lazy" /></div>
+      <div class="ph ph-b"><img src="img/about-couple.webp" alt="A couple at Corner Coffee" loading="lazy" /></div>
+      <div class="ph ph-c"><img src="img/about-kid.webp" alt="A little guest at Corner Coffee" loading="lazy" /></div>
       <div class="badge-card">
         <span class="num">☕</span>
         <span class="txt">Brewed with care<span class="sub">from bean to cup, every time</span></span>
@@ -609,49 +581,50 @@
       <p class="g-note">A little collage of life at the corner — every photo keeps its original framing. Tap any to see it up close.</p>
     </div>
     <div class="mosaic" id="masonry">
-      <figure class="g-item" data-w="1200" data-h="1500"><img src="img/g01.jpg" alt="Corner Coffee — photo 1" loading="lazy" decoding="async" width="1200" height="1500" /></figure>
-      <figure class="g-item" data-w="940" data-h="788"><img src="img/g02.jpg" alt="Corner Coffee — photo 2" loading="lazy" decoding="async" width="940" height="788" /></figure>
-      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g03.jpg" alt="Corner Coffee — photo 3" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
-      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g04.jpg" alt="Corner Coffee — photo 4" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
-      <figure class="g-item" data-w="1200" data-h="900"><img src="img/g05.jpg" alt="Corner Coffee — photo 5" loading="lazy" decoding="async" width="1200" height="900" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1250"><img src="img/g01.webp" alt="Corner Coffee — photo 1" loading="lazy" decoding="async" width="1000" height="1250" /></figure>
+      <figure class="g-item" data-w="940" data-h="788"><img src="img/g02.webp" alt="Corner Coffee — photo 2" loading="lazy" decoding="async" width="940" height="788" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1333"><img src="img/g03.webp" alt="Corner Coffee — photo 3" loading="lazy" decoding="async" width="1000" height="1333" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1333"><img src="img/g04.webp" alt="Corner Coffee — photo 4" loading="lazy" decoding="async" width="1000" height="1333" /></figure>
+      <figure class="g-item" data-w="1000" data-h="750"><img src="img/g05.webp" alt="Corner Coffee — photo 5" loading="lazy" decoding="async" width="1000" height="750" /></figure>
       <div class="g-tile g-item" data-w="2" data-h="1"><span class="t-eyebrow">Corner Coffee · Trenton, GA</span><span class="t-big">Grab your coffee.<br/><em>Stay a while.</em></span></div>
-      <figure class="g-item" data-w="1200" data-h="900"><img src="img/g06.jpg" alt="Corner Coffee — photo 6" loading="lazy" decoding="async" width="1200" height="900" /></figure>
-      <figure class="g-item" data-w="1179" data-h="1569"><img src="img/g39.jpg" alt="Corner Coffee — photo 7" loading="lazy" decoding="async" width="1179" height="1569" /></figure>
-      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g40.jpg" alt="Corner Coffee — photo 8" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
-      <figure class="g-item" data-w="1200" data-h="900"><img src="img/g41.jpg" alt="Corner Coffee — photo 9" loading="lazy" decoding="async" width="1200" height="900" /></figure>
-      <figure class="g-item" data-w="720" data-h="1280"><img src="img/g42.jpg" alt="Corner Coffee — photo 10" loading="lazy" decoding="async" width="720" height="1280" /></figure>
-      <figure class="g-item" data-w="720" data-h="967"><img src="img/g07.jpg" alt="Corner Coffee — photo 11" loading="lazy" decoding="async" width="720" height="967" /></figure>
-      <figure class="g-item" data-w="720" data-h="529"><img src="img/g08.jpg" alt="Corner Coffee — photo 12" loading="lazy" decoding="async" width="720" height="529" /></figure>
-      <figure class="g-item" data-w="720" data-h="960"><img src="img/g09.jpg" alt="Corner Coffee — photo 13" loading="lazy" decoding="async" width="720" height="960" /></figure>
-      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g10.jpg" alt="Corner Coffee — photo 14" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
-      <figure class="g-item" data-w="720" data-h="967"><img src="img/g11.jpg" alt="Corner Coffee — photo 15" loading="lazy" decoding="async" width="720" height="967" /></figure>
-      <figure class="g-item" data-w="720" data-h="960"><img src="img/g12.jpg" alt="Corner Coffee — photo 16" loading="lazy" decoding="async" width="720" height="960" /></figure>
-      <figure class="g-item" data-w="1200" data-h="900"><img src="img/g13.jpg" alt="Corner Coffee — photo 17" loading="lazy" decoding="async" width="1200" height="900" /></figure>
-      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g14.jpg" alt="Corner Coffee — photo 18" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
-      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g15.jpg" alt="Corner Coffee — photo 19" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
-      <figure class="g-item" data-w="1179" data-h="1537"><img src="img/g16.jpg" alt="Corner Coffee — photo 20" loading="lazy" decoding="async" width="1179" height="1537" /></figure>
-      <figure class="g-item" data-w="1038" data-h="1041"><img src="img/g17.jpg" alt="Corner Coffee — photo 21" loading="lazy" decoding="async" width="1038" height="1041" /></figure>
-      <figure class="g-item" data-w="720" data-h="960"><img src="img/g18.jpg" alt="Corner Coffee — photo 22" loading="lazy" decoding="async" width="720" height="960" /></figure>
-      <figure class="g-item" data-w="1200" data-h="900"><img src="img/g19.jpg" alt="Corner Coffee — photo 23" loading="lazy" decoding="async" width="1200" height="900" /></figure>
-      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g20.jpg" alt="Corner Coffee — photo 24" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
-      <figure class="g-item" data-w="1179" data-h="878"><img src="img/g21.jpg" alt="Corner Coffee — photo 25" loading="lazy" decoding="async" width="1179" height="878" /></figure>
-      <figure class="g-item" data-w="1179" data-h="868"><img src="img/g22.jpg" alt="Corner Coffee — photo 26" loading="lazy" decoding="async" width="1179" height="868" /></figure>
-      <figure class="g-item" data-w="1179" data-h="871"><img src="img/g23.jpg" alt="Corner Coffee — photo 27" loading="lazy" decoding="async" width="1179" height="871" /></figure>
-      <figure class="g-item" data-w="1179" data-h="1566"><img src="img/g24.jpg" alt="Corner Coffee — photo 28" loading="lazy" decoding="async" width="1179" height="1566" /></figure>
-      <figure class="g-item" data-w="1179" data-h="664"><img src="img/g25.jpg" alt="Corner Coffee — photo 29" loading="lazy" decoding="async" width="1179" height="664" /></figure>
-      <figure class="g-item" data-w="1179" data-h="1565"><img src="img/g26.jpg" alt="Corner Coffee — photo 30" loading="lazy" decoding="async" width="1179" height="1565" /></figure>
-      <figure class="g-item" data-w="1179" data-h="878"><img src="img/g27.jpg" alt="Corner Coffee — photo 31" loading="lazy" decoding="async" width="1179" height="878" /></figure>
-      <figure class="g-item" data-w="1179" data-h="874"><img src="img/g28.jpg" alt="Corner Coffee — photo 32" loading="lazy" decoding="async" width="1179" height="874" /></figure>
-      <figure class="g-item" data-w="1179" data-h="1548"><img src="img/g29.jpg" alt="Corner Coffee — photo 33" loading="lazy" decoding="async" width="1179" height="1548" /></figure>
-      <figure class="g-item" data-w="1200" data-h="1025"><img src="img/g30.jpg" alt="Corner Coffee — photo 34" loading="lazy" decoding="async" width="1200" height="1025" /></figure>
-      <figure class="g-item" data-w="1200" data-h="1600"><img src="img/g31.jpg" alt="Corner Coffee — photo 35" loading="lazy" decoding="async" width="1200" height="1600" /></figure>
-      <figure class="g-item" data-w="1179" data-h="878"><img src="img/g32.jpg" alt="Corner Coffee — photo 36" loading="lazy" decoding="async" width="1179" height="878" /></figure>
-      <figure class="g-item" data-w="720" data-h="521"><img src="img/g33.jpg" alt="Corner Coffee — photo 37" loading="lazy" decoding="async" width="720" height="521" /></figure>
-      <figure class="g-item" data-w="1200" data-h="900"><img src="img/g34.jpg" alt="Corner Coffee — photo 38" loading="lazy" decoding="async" width="1200" height="900" /></figure>
-      <figure class="g-item" data-w="1200" data-h="1200"><img src="img/g35.jpg" alt="Corner Coffee — photo 39" loading="lazy" decoding="async" width="1200" height="1200" /></figure>
-      <figure class="g-item" data-w="1200" data-h="723"><img src="img/g36.jpg" alt="Corner Coffee — photo 40" loading="lazy" decoding="async" width="1200" height="723" /></figure>
-      <figure class="g-item" data-w="1200" data-h="1110"><img src="img/g37.jpg" alt="Corner Coffee — photo 41" loading="lazy" decoding="async" width="1200" height="1110" /></figure>
-      <figure class="g-item" data-w="1179" data-h="884"><img src="img/g38.jpg" alt="Corner Coffee — photo 42" loading="lazy" decoding="async" width="1179" height="884" /></figure>
+      <figure class="g-item" data-w="1000" data-h="750"><img src="img/g06.webp" alt="Corner Coffee — photo 6" loading="lazy" decoding="async" width="1000" height="750" /></figure>
+      <figure class="g-item" data-w="720" data-h="967"><img src="img/g07.webp" alt="Corner Coffee — photo 7" loading="lazy" decoding="async" width="720" height="967" /></figure>
+      <figure class="g-item" data-w="720" data-h="529"><img src="img/g08.webp" alt="Corner Coffee — photo 8" loading="lazy" decoding="async" width="720" height="529" /></figure>
+      <figure class="g-item" data-w="720" data-h="960"><img src="img/g09.webp" alt="Corner Coffee — photo 9" loading="lazy" decoding="async" width="720" height="960" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1333"><img src="img/g10.webp" alt="Corner Coffee — photo 10" loading="lazy" decoding="async" width="1000" height="1333" /></figure>
+      <figure class="g-item" data-w="720" data-h="967"><img src="img/g11.webp" alt="Corner Coffee — photo 11" loading="lazy" decoding="async" width="720" height="967" /></figure>
+      <figure class="g-item" data-w="720" data-h="960"><img src="img/g12.webp" alt="Corner Coffee — photo 12" loading="lazy" decoding="async" width="720" height="960" /></figure>
+      <figure class="g-item" data-w="1000" data-h="750"><img src="img/g13.webp" alt="Corner Coffee — photo 13" loading="lazy" decoding="async" width="1000" height="750" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1333"><img src="img/g14.webp" alt="Corner Coffee — photo 14" loading="lazy" decoding="async" width="1000" height="1333" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1333"><img src="img/g15.webp" alt="Corner Coffee — photo 15" loading="lazy" decoding="async" width="1000" height="1333" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1304"><img src="img/g16.webp" alt="Corner Coffee — photo 16" loading="lazy" decoding="async" width="1000" height="1304" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1003"><img src="img/g17.webp" alt="Corner Coffee — photo 17" loading="lazy" decoding="async" width="1000" height="1003" /></figure>
+      <figure class="g-item" data-w="720" data-h="960"><img src="img/g18.webp" alt="Corner Coffee — photo 18" loading="lazy" decoding="async" width="720" height="960" /></figure>
+      <figure class="g-item" data-w="1000" data-h="750"><img src="img/g19.webp" alt="Corner Coffee — photo 19" loading="lazy" decoding="async" width="1000" height="750" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1333"><img src="img/g20.webp" alt="Corner Coffee — photo 20" loading="lazy" decoding="async" width="1000" height="1333" /></figure>
+      <figure class="g-item" data-w="1000" data-h="745"><img src="img/g21.webp" alt="Corner Coffee — photo 21" loading="lazy" decoding="async" width="1000" height="745" /></figure>
+      <figure class="g-item" data-w="1000" data-h="736"><img src="img/g22.webp" alt="Corner Coffee — photo 22" loading="lazy" decoding="async" width="1000" height="736" /></figure>
+      <figure class="g-item" data-w="1000" data-h="739"><img src="img/g23.webp" alt="Corner Coffee — photo 23" loading="lazy" decoding="async" width="1000" height="739" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1328"><img src="img/g24.webp" alt="Corner Coffee — photo 24" loading="lazy" decoding="async" width="1000" height="1328" /></figure>
+      <figure class="g-item" data-w="1000" data-h="563"><img src="img/g25.webp" alt="Corner Coffee — photo 25" loading="lazy" decoding="async" width="1000" height="563" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1327"><img src="img/g26.webp" alt="Corner Coffee — photo 26" loading="lazy" decoding="async" width="1000" height="1327" /></figure>
+      <figure class="g-item" data-w="1000" data-h="745"><img src="img/g27.webp" alt="Corner Coffee — photo 27" loading="lazy" decoding="async" width="1000" height="745" /></figure>
+      <figure class="g-item" data-w="1000" data-h="741"><img src="img/g28.webp" alt="Corner Coffee — photo 28" loading="lazy" decoding="async" width="1000" height="741" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1313"><img src="img/g29.webp" alt="Corner Coffee — photo 29" loading="lazy" decoding="async" width="1000" height="1313" /></figure>
+      <figure class="g-item" data-w="1000" data-h="854"><img src="img/g30.webp" alt="Corner Coffee — photo 30" loading="lazy" decoding="async" width="1000" height="854" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1333"><img src="img/g31.webp" alt="Corner Coffee — photo 31" loading="lazy" decoding="async" width="1000" height="1333" /></figure>
+      <figure class="g-item" data-w="1000" data-h="745"><img src="img/g32.webp" alt="Corner Coffee — photo 32" loading="lazy" decoding="async" width="1000" height="745" /></figure>
+      <figure class="g-item" data-w="720" data-h="521"><img src="img/g33.webp" alt="Corner Coffee — photo 33" loading="lazy" decoding="async" width="720" height="521" /></figure>
+      <figure class="g-item" data-w="1000" data-h="750"><img src="img/g34.webp" alt="Corner Coffee — photo 34" loading="lazy" decoding="async" width="1000" height="750" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1000"><img src="img/g35.webp" alt="Corner Coffee — photo 35" loading="lazy" decoding="async" width="1000" height="1000" /></figure>
+      <figure class="g-item" data-w="1000" data-h="602"><img src="img/g36.webp" alt="Corner Coffee — photo 36" loading="lazy" decoding="async" width="1000" height="602" /></figure>
+      <figure class="g-item" data-w="1000" data-h="925"><img src="img/g37.webp" alt="Corner Coffee — photo 37" loading="lazy" decoding="async" width="1000" height="925" /></figure>
+      <figure class="g-item" data-w="1000" data-h="750"><img src="img/g38.webp" alt="Corner Coffee — photo 38" loading="lazy" decoding="async" width="1000" height="750" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1331"><img src="img/g39.webp" alt="Corner Coffee — photo 39" loading="lazy" decoding="async" width="1000" height="1331" /></figure>
+      <figure class="g-item" data-w="1000" data-h="1333"><img src="img/g40.webp" alt="Corner Coffee — photo 40" loading="lazy" decoding="async" width="1000" height="1333" /></figure>
+      <figure class="g-item" data-w="1000" data-h="750"><img src="img/g41.webp" alt="Corner Coffee — photo 41" loading="lazy" decoding="async" width="1000" height="750" /></figure>
+      <figure class="g-item" data-w="720" data-h="1280"><img src="img/g42.webp" alt="Corner Coffee — photo 42" loading="lazy" decoding="async" width="720" height="1280" /></figure>
+    </div>
     </div>
   </div>
 </section>
@@ -720,17 +693,12 @@
       </div>
     </div>
     <div class="map-card reveal">
-      <div class="map-visual" aria-label="Corner Coffee location — 48 Court St, Trenton, GA">
-        <div class="map-pin">
-          <div class="cup">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4Z"/><path d="M6 1v3M10 1v3M14 1v3"/></svg>
-          </div>
-          <div class="lbl">48 Court St, Trenton, GA 30752</div>
-          <div class="sub">Right on the corner of the town square — you can't miss us</div>
-        </div>
-      </div>
+      <iframe
+        title="Corner Coffee on Google Maps"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283!2d-85.508912!3d34.872508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88604f3736a30ced%3A0x274983d5945f9638!2sCorner%20Coffee!5e0!3m2!1sen!2sus!4v1700000000000"
+        loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
       <div class="bar">
-        <span class="addr">Corner Coffee<small>48 Court St, Trenton, GA 30752</small></span>
+        <span class="addr">48 Court St, Trenton, GA 30752<small>Right on the corner — you can't miss us</small></span>
         <div class="map-actions">
           <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Corner+Coffee,+48+Court+St,+Trenton,+GA+30752" target="_blank" rel="noopener noreferrer" class="btn btn-solid">Get Directions</a>
           <a href="https://maps.app.goo.gl/zjhfcNF3UwDH5YDm9" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">Open in Google Maps</a>
